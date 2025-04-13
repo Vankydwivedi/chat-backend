@@ -18,12 +18,17 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://chat-frontend-two-phi.vercel.app/",
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://chat-frontend-two-phi.vercel.app",
+  credentials: true,
+}));
+
+app.options("*", cors({
+  origin: "https://chat-frontend-two-phi.vercel.app",
+  credentials: true,
+}));
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
